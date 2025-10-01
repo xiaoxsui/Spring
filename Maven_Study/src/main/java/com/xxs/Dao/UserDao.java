@@ -2,7 +2,7 @@ package com.xxs.Dao;
 
 import org.springframework.stereotype.Component;
 
-//@Component
+@Component
 public class UserDao implements  IUserDao{
 
     @Override
