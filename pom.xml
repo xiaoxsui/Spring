@@ -12,6 +12,8 @@
     <modules>
         <module>Maven_Study</module>
         <module>SpringBoot_Study</module>
+        <module>SpringBootDemo</module>
+        <module>AOP_Study</module>
     </modules>
 
 
