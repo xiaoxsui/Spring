@@ -9,6 +9,7 @@ import org.springframework.context.annotation.DependsOn;
 public class DependsOnTest {
     @Bean
     @DependsOn("d")     //设置d为c的前置bean，这样在bean自动创建的时候d就会创建在c前
+//    @DependsOn(D.class)   //也可使用bean.class的写法
     public C c(){
         return new C();
     }

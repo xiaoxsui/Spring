@@ -13,7 +13,9 @@ public class UserServiceImpl implements UserService {
     @Override
     public void update() {System.out.println("修改了一个用户");}
     @Override
-    public void query() {
+    public Object query() {
         System.out.println("查询了一个用户");
+        throw new RuntimeException("出错了！"); //创造异常
+        //return null;
     }
 }

@@ -9,6 +9,6 @@ import org.springframework.boot.test.context.SpringBootTest;
 public class AspectTest {
     @Test
     public void test(@Autowired UserService userService){
-        userService.add();
+        userService.query();
     }
 }
