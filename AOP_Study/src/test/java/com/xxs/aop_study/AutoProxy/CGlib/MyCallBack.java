@@ -21,7 +21,8 @@ public class MyCallBack implements MethodInterceptor {
         //前置
         System.out.println("前置");
 
-        //目标对象
+        //目标对象-->不使用反射，直接调用父类方法（类似super.add();)
+        //cglib也支持使用method.invoke()使用反射
         Object returnValue = proxy.invokeSuper(obj, args);
 
         //后置
