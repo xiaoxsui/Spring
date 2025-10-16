@@ -1,5 +1,6 @@
-package com.xxs.transactionstudy;
+package com.xxs.transactionstudy.springboot;
 
+import com.xxs.transactionstudy.User;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -21,7 +22,14 @@ class TransactionStudyApplicationTests {
     //添加操作
     @Test
     void TestJdbcTemplate(@Autowired JdbcTemplate jdbcTemplate) throws SQLException, ClassNotFoundException {
-        jdbcTemplate.update("insert into test_user(id,name) values (?,?)","2","xxs");
+        jdbcTemplate.update("insert into test_user(name) values (?)","xxs");
+    }
+
+    //删除操作
+    @Test
+    void TestJdbcTemplateDelete(@Autowired JdbcTemplate jdbcTemplate) throws SQLException, ClassNotFoundException {
+        String sql = "delete from test_user where id=?";
+        jdbcTemplate.update(sql,1);
     }
 
     //更改操作
@@ -45,5 +53,11 @@ class TransactionStudyApplicationTests {
         String sql = "Select * from test_user";
         List<User> list = jdbcTemplate.query(sql, new BeanPropertyRowMapper<>(User.class));
         System.out.println(list);
+    }
+
+    //通过业务逻辑类进行单元测试
+    @Test
+    public void TestTransactional(@Autowired UserService service){
+        service.insert();
     }
 }

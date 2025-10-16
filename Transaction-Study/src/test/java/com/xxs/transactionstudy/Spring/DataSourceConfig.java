@@ -4,11 +4,15 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.datasource.DataSourceTransactionManager;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
+import org.springframework.transaction.TransactionManager;
+import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 import javax.sql.DataSource;
 
 @Configuration
+@EnableTransactionManagement
 public class DataSourceConfig {
 
     @Value("${spring.datasource.url}")
@@ -34,5 +38,11 @@ public class DataSourceConfig {
     @Bean
     public JdbcTemplate jdbcTemplate(DataSource dataSource) {
         return new JdbcTemplate(dataSource);
+    }
+
+    //配置事务管理器，注入DataSource连接
+    @Bean
+    public TransactionManager transactionManager(DataSource dataSource){
+        return new DataSourceTransactionManager(dataSource);
     }
 }
